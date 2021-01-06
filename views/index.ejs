@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<title>Food App</title>
+	</head>
+	<body>
+		<div class="container w-25 mt-5">
+			<div>
+				<a class="btn btn-primary btn-block" href="/admin/product">Products</a>
+				<a class="btn btn-secondary btn-block" href="/admin/category">Categories</a>
+				<a class="btn btn-success btn-block" href="">Orders</a>
+				<a class="btn btn-warning btn-block" href="">API</a>
+			</div>
+		</div>
+		<div class="container w-75 mt-5">
+			<code>
+				<p>GET: /product : get all product</p>
+				<p>GET: /product?category=value : get all product in category</p>
+
+				<br />
+
+				<p>POST: /user/login : login {username: string, password: string}</p>
+				<p>POST: /user/register : register {name: string ,username: string, password: string, passwordConfirm: string}</p>
+				<b>Authorization</b>
+				<p>GET: /user/favorite/:productId : favorite product</p>
+				<p>DELETE: /user/favorite/:productId : unfavorite product</p>
+
+				<br />
+
+				<p>GET: /order : get all orders of user</p>
+				<p>POST: /order : add order {products : [{productId : string, quantity: number}]}</p>
+			</code>
+		</div>
+	</body>
+</html>
