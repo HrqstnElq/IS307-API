@@ -4,17 +4,19 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const port = process.env.PORT || 3000;
-const swaggerDoc = require("./swaggerDoc");
 
 require("dotenv").config();
 require("./database");
 
+const port = process.env.PORT || 3000;
+const swaggerDoc = require("./swaggerDoc");
+
+//router
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const productRouter = require("./routes/product");
 const orderRouter = require("./routes/order");
-
+//routes admin
 const adminRouter = require("./routes/admin");
 const adminProductRouter = require("./routes/admin/product");
 const adminCategoryRouter = require("./routes/admin/category");

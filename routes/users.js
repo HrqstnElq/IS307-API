@@ -6,7 +6,6 @@ const router = express.Router();
 
 const User = require("../models/user");
 const Product = require("../models/product");
-const {findById} = require("../models/product");
 
 /** body :
  * {
