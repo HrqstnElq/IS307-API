@@ -21,7 +21,7 @@ router.post("/add", (req, res) => {
 	new Product(req.body)
 		.save()
 		.then(() => {
-			res.redirect("/admin");
+			res.redirect("/admin/product");
 		})
 		.catch((err) => res.status(500).json(err));
 });
@@ -38,7 +38,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
 	Product.findByIdAndUpdate(req.params.id, req.body)
-		.then((doc) => {
+		.then(() => {
 			res.redirect("/admin/product");
 		})
 		.catch((err) => res.status(500).json(err));
