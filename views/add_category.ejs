@@ -31,10 +31,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/">Home</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="/admin/product">Products</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="/admin/category">Categories</a>
 					</li>
 					<li class="nav-item">
@@ -44,16 +44,11 @@
 			</div>
 		</nav>
 		<div class="container m-auto">
-			<h3>ADD FOOD ITEM</h3>
+			<h3>ADD CATEGORY ITEM</h3>
 			<form autocomplete="off" method="post">
 				<div class="form-group">
-					<label for="name">Food Name</label>
-					<input type="name" class="form-control" name="name" placeholder="Enter food name" value="Tra sua" required />
-				</div>
-
-				<div class="form-group">
-					<label for="price">Price</label>
-					<input type="number" class="form-control" name="price" placeholder="Enter food price" value="10000" required />
+					<label for="name">Category name</label>
+					<input type="name" class="form-control" name="name" placeholder="Enter category name" value="Fruit" required />
 				</div>
 
 				<div class="form-group">
@@ -62,23 +57,30 @@
 						type="url"
 						class="form-control"
 						name="pictureUrl"
-						placeholder="Enter food picture url"
-						value="https://i.pinimg.com/564x/1f/70/43/1f7043bd8108d2d5d1d70ede81a78bd8.jpg"
+						placeholder="Enter category picture url"
+						value="https://i.pinimg.com/564x/f4/ce/1b/f4ce1bf121e8d867ad82ec5586607357.jpg"
 						required
 					/>
 				</div>
+
 				<div class="form-group">
-					<label for="category">Category</label>
-					<select name="category" class="form-control" id="category">
-						<% for(var i = 0; i < categories.length; i++) { %>
-						<option value="<%= categories[i].name %>"><%= categories[i].name %></option>
-						<% } %>
-					</select>
+					<label for="color">Color</label>
+					<input
+						type="text"
+						class="form-control"
+						name="color"
+						placeholder="Enter category color"
+						minlength="4"
+						maxlength="7"
+						value="#fab1a0"
+						required
+					/>
 				</div>
+
 				<div class="form-group">
 					<button type="submit" class="btn btn-success">Add</button>
 					<button type="reset" class="btn btn-danger">Reset</button>
-					<a onclick="window.history.back()" class="btn btn-secondary">Return</a>
+					<a onclick="window.history.back();" class="btn btn-secondary">Return</a>
 				</div>
 			</form>
 		</div>

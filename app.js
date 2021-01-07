@@ -19,6 +19,7 @@ const orderRouter = require("./routes/order");
 const adminRouter = require("./routes/admin");
 const adminProductRouter = require("./routes/admin/product");
 const adminCategoryRouter = require("./routes/admin/category");
+const adminOrderRouter = require("./routes/admin/order");
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use("/order", orderRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/product", adminProductRouter);
 app.use("/admin/category", adminCategoryRouter);
+app.use("/admin/order", adminOrderRouter);
 
 app.listen(port, () => {
 	console.log(`listening at http://localhost:${port}`);

@@ -11,6 +11,21 @@ router.get("/", (req, res) => {
 	});
 });
 
+router.get("/add", (req, res) => {
+	res.render("add_category.ejs");
+});
+
+router.post("/add", (req, res) => {
+	new Category(req.body)
+		.save()
+		.then(() => {
+			res.redirect("/admin/category");
+		})
+		.catch(() => {
+			res.status(500).json({message: "Failed to save"});
+		});
+});
+
 router.get("/:id", (req, res) => {
 	Category.findById(req.params.id).then((category) => {
 		res.render("edit_category", {category: category});
