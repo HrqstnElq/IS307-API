@@ -3,27 +3,6 @@ const auth = require("../middleware/auth");
 const Order = require("../models/order");
 const Product = require("../models/product");
 
-/**
- * @swagger
- * tags:
- *   name: order
- *   description: Get order of user
- */
-
-/**
- * @swagger
- * /order:
- *   get:
- *     description: Returns all product or product in category
- *     tags: [order]
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: success
- *       401:
- *         description: Unauthorized
- */
 router.get("/", auth, (req, res) => {
 	Order.find({userId: req.body.userId})
 		.then((orders) => {
@@ -44,27 +23,6 @@ router.get("/", auth, (req, res) => {
 ]
 }
 */
-
-/**
- * @swagger
- * /order:
- *   post:
- *     description: Create order
- *     tags: [order]
- *     produces:
- *       - application/json
- *     requestBody:
- *      require: true
- *      content:
- *       application/json:
- *        schema:
- *         $ref: '#/parameters/username'
- *     responses:
- *       200:
- *         description: success
- *       401:
- *         description: Unauthorized
- */
 router.post("/", auth, async (req, res) => {
 	const products = req.body.products;
 	if (products && products.length > 0) {

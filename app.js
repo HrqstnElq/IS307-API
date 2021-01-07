@@ -9,7 +9,6 @@ require("dotenv").config();
 require("./database");
 
 const port = process.env.PORT || 3000;
-const swaggerDoc = require("./swaggerDoc");
 
 //router
 const indexRouter = require("./routes/index");
@@ -45,8 +44,6 @@ app.use("/order", orderRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/product", adminProductRouter);
 app.use("/admin/category", adminCategoryRouter);
-
-swaggerDoc(app);
 
 app.listen(port, () => {
 	console.log(`listening at http://localhost:${port}`);

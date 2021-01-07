@@ -99,7 +99,6 @@ router.get("/favorite/:productId", auth, (req, res) => {
 			res.status(500).json(err);
 		});
 });
-
 //remove product to favorite list
 router.delete("/favorite/:productId", auth, (req, res) => {
 	User.findById(req.body.userId)
