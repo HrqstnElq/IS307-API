@@ -14,6 +14,7 @@ const Product = require("../models/product");
  * }
  */
 router.post("/login", (req, res) => {
+	console.log("body:", req.body);
 	if (req.body.username === undefined || req.body.password === "" || req.body.password === undefined || req.body.password === "") {
 		res.status(400).json({message: "Username or password is required"});
 	} else {
@@ -44,10 +45,12 @@ router.post("/login", (req, res) => {
  * }
  */
 router.post("/register", (req, res) => {
+	console.log("body:", req.body);
 	User.findOne({username: req.body.username})
 		.then((user) => {
 			if (user) {
-				res.status(500).json({
+				//403 Forbidden
+				res.status(403).json({
 					message: "User already exists",
 				});
 			} else {
@@ -67,7 +70,8 @@ router.post("/register", (req, res) => {
 							res.status(500).json(err);
 						});
 				} else {
-					res.status(500).json({
+					//409 Conflict
+					res.status(409).json({
 						message: "PasswordConfirm incorrect",
 					});
 				}
