@@ -48,6 +48,7 @@ router.post("/", auth, async (req, res) => {
 			products: list_product,
 			total: total,
 			address: req.body.address,
+			phone: req.body.phone,
 		})
 			.save()
 			.then(() => {

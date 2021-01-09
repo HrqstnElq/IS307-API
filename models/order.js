@@ -14,6 +14,10 @@ var orderSchema = mongoose.Schema(
 			type: String,
 			require: true,
 		},
+		phone: {
+			type: String,
+			require: true,
+		},
 		products: {
 			type: [{product: {type: Object, required: true}, quantity: {type: Number, required: true}}],
 			required: true,

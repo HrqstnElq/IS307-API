@@ -7,6 +7,18 @@ const router = express.Router();
 const User = require("../models/user");
 const Product = require("../models/product");
 
+//get user detail
+router.get("/", auth, (req, res) => {
+	User.findById(req.body.userId)
+		.then((user) => {
+			res.json(user);
+		})
+		.catch((err) => {
+			res.status(500).json(err);
+			s;
+		});
+});
+
 /** body :
  * {
  * 	username: string,
@@ -82,22 +94,39 @@ router.post("/register", (req, res) => {
 		});
 });
 
+router.get("/favorite", auth, (req, res) => {
+	User.findById(req.body.userId)
+		.then((user) => {
+			console.log(user);
+			if (user) {
+				res.json(user.favorite);
+			} else {
+				res.sendStatus(403);
+			}
+		})
+		.catch(() => res.sendStatus(500));
+});
+
 //add product to favorite list
 router.get("/favorite/:productId", auth, (req, res) => {
 	Product.findById(req.params.productId)
 		.then((product) => {
-			User.findById(req.body.userId)
-				.then((user) => {
-					user.favorite.push(product);
-					user.save()
-						.then(() => {
-							res.json({message: "favorite successfully"});
-						})
-						.catch(() => {
-							res.status(500).json({message: "failed to save"});
-						});
-				})
-				.catch((err) => res.status(500).json(err));
+			if (product) {
+				User.findById(req.body.userId)
+					.then((user) => {
+						user.favorite.push(product);
+						user.save()
+							.then(() => {
+								res.json({message: "favorite successfully"});
+							})
+							.catch(() => {
+								res.status(500).json({message: "failed to save"});
+							});
+					})
+					.catch((err) => res.status(500).json(err));
+			} else {
+				res.status(403).json({message: "Product not found"});
+			}
 		})
 		.catch((err) => {
 			res.status(500).json(err);
