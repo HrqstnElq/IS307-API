@@ -4,13 +4,24 @@ const Order = require("../models/order");
 const Product = require("../models/product");
 
 router.get("/", auth, (req, res) => {
-	Order.find({userId: req.body.userId})
-		.then((orders) => {
-			res.send(orders);
-		})
-		.catch((err) => {
-			res.status(500).json(err);
-		});
+	Order.find(
+		{userId: req.body.userId},
+		[],
+		{
+			skip: 0,
+			limit: 20,
+			sort: {
+				dateCreated: -1, //Sort by slDaBan DESC
+			},
+		},
+		function (err, orders) {
+			if (err) {
+				res.sendStatus(500);
+			} else {
+				res.send(orders);
+			}
+		}
+	);
 });
 
 /*
@@ -31,7 +42,7 @@ router.post("/", auth, async (req, res) => {
 		let list_product = [];
 		for (const item of products) {
 			try {
-				var product = await Product.findById(item.productId);
+				var product = await Product.findByIdAndUpdate(item.productId, {$inc: {slDaBan: item.quantity}});
 				list_product.push({
 					product: product,
 					quantity: item.quantity,

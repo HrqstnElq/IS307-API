@@ -26,6 +26,11 @@ var orderSchema = mongoose.Schema(
 			type: Number,
 			required: true,
 		},
+		isReceive: {
+			type: Boolean,
+			required: true,
+			default: false,
+		},
 	},
 	{versionKey: false}
 );

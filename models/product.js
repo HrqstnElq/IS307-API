@@ -18,6 +18,11 @@ var productSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		slDaBan: {
+			type: Number,
+			required: true,
+			default: 0,
+		},
 	},
 	{versionKey: false}
 );

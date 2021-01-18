@@ -9,4 +9,16 @@ router.get("/", (req, res) => {
 		.catch((err) => res.status(500).json(err));
 });
 
+router.get("/receive/:orderId", (req, res) => {
+	Order.findByIdAndUpdate(req.params.orderId, {
+		isReceive: true,
+	})
+		.then(() => {
+			res.sendStatus(200);
+		})
+		.catch(() => {
+			res.status(500).json({message: "order not found"});
+		});
+});
+
 module.exports = router;

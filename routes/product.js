@@ -15,6 +15,23 @@ router.get("/", (req, res) => {
 		});
 });
 
+router.get("/top", (req, res) => {
+	Product.find(
+		{},
+		[], // Columns to Return
+		{
+			skip: 0, // Starting Row
+			limit: 20, // Ending Row
+			sort: {
+				slDaBan: -1, //Sort by slDaBan DESC
+			},
+		},
+		function (err, products) {
+			res.json(products);
+		}
+	);
+});
+
 router.get("/categories", (req, res) => {
 	Category.find({})
 		.then((categories) => {
