@@ -23,6 +23,10 @@ var productSchema = mongoose.Schema(
 			required: true,
 			default: 0,
 		},
+		description: {
+			type: String,
+			required: false,
+		},
 	},
 	{versionKey: false}
 );

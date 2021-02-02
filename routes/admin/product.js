@@ -38,7 +38,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/:id", (req, res) => {
 	Product.findByIdAndUpdate(req.params.id, req.body)
-		.then(() => {
+		.then((product) => {
 			res.redirect("/admin/product");
 		})
 		.catch((err) => res.status(500).json(err));
