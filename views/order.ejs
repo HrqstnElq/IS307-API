@@ -9,7 +9,7 @@
 			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 			crossorigin="anonymous"
 		/>
-		<title>Food</title>
+		<title>Orders</title>
 	</head>
 
 	<body>
@@ -32,13 +32,13 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/">Home</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a class="nav-link" href="/admin/product">Products</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/category">Categories</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" href="/admin/order">Orders</a>
 					</li>
 				</ul>
@@ -49,46 +49,42 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Name</th>
-						<th scope="col">Price</th>
-						<th scope="col">Category</th>
+						<th scope="col">OrderID</th>
+						<th scope="col">Date created</th>
+						<th scope="col">Status</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<% for (i = 0; i < products.length; i++) { %>
+					<% for (i = 0; i < orders.length; i++) { %>
 					<tr>
-						<td>
-							<img src="<%= products[i].pictureUrl %>" style="height: 100px; width: 100px; object-fit: cover" />
-						</td>
-						<td><%= products[i].name %></td>
-						<td><%= products[i].price %></td>
-						<td><%= products[i].category %></td>
-						<td>
-							<button onclick="updateHandler('<%= products[i].id %>')" class="btn btn-warning">Update</button>
-							<button onclick="deleteHandler('<%= products[i].id %>')" class="btn btn-danger">Delete</button>
-						</td>
+						<td><%= orders[i]._id %></td>
+						<td><%= orders[i].dateCreated %></td>
+						<% if(orders[i].isReceive === true){ %>
+						<td class="text-primary">pending</td>
+						<% } else { %>
+						<td class="text-secondary">received</td>
+						<% } %>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
 		</div>
 		<script>
-			function deleteHandler(id) {
-				fetch(`product/${id}`, {
-					method: "DELETE",
-				})
-					.then(function (response) {
-						location.reload();
-					})
-					.catch((error) => {
-						log(error);
-					});
-			}
-			function updateHandler(id) {
-				window.location.href = `product/${id}`;
-			}
+			// function deleteHandler(id) {
+			// 	fetch(`product/${id}`, {
+			// 		method: "DELETE",
+			// 	})
+			// 		.then(function (response) {
+			// 			location.reload();
+			// 		})
+			// 		.catch((error) => {
+			// 			log(error);
+			// 		});
+			// }
+			// function updateHandler(id) {
+			// 	window.location.href = `product/${id}`;
+			// }
 		</script>
 		<script
 			src="https://code.jquery.com/jquery-3.5.1.min.js"

@@ -4,7 +4,7 @@ const Order = require("../../models/order");
 router.get("/", (req, res) => {
 	Order.find({})
 		.then((orders) => {
-			res.json(orders);
+			res.render("order.ejs", {orders: orders});
 		})
 		.catch((err) => res.status(500).json(err));
 });

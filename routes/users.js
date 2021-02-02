@@ -95,6 +95,7 @@ router.post("/register", (req, res) => {
 });
 
 router.get("/favorite", auth, (req, res) => {
+	console.log(req.body.userId);
 	User.findById(req.body.userId)
 		.then((user) => {
 			console.log(user);

@@ -8,6 +8,9 @@ const User = require("../models/user");
 router.get("/", (req, res) => {
 	Product.find({category: req.query.category || {$regex: ".*"}})
 		.then((products) => {
+			if (req.query.search) {
+				products = products.filter((product) => product.name.toUpperCase().includes(req.query.search.toUpperCase()));
+			}
 			res.json(products);
 		})
 		.catch(() => {
