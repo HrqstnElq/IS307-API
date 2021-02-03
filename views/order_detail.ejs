@@ -45,40 +45,43 @@
 			</div>
 		</nav>
 		<div class="container">
+			<div class="mt-5">
+				<p><b>Date create :</b> <%= order.dateCreated %></p>
+				<p><b>Total : </b><span class="text-danger"><%= order.total %>.000đ</span></p>
+				<p><b>Address :</b> <%= order.address %></p>
+				<p><b>Phone number :</b> <%= order.phone %></p>
+				<p><b>Products :</b></p>
+			</div>
+
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">OrderID</th>
-						<th scope="col">Date created</th>
-						<th scope="col">Status</th>
-						<th scope="col">Action</th>
+						<th scope="col">#</th>
+						<th scope="col">Product</th>
+						<th scope="col">Quantity</th>
 					</tr>
 				</thead>
 				<tbody>
-					<% for (i = 0; i < orders.length; i++) { %>
+					<% for (i = 0; i < order.products.length; i++) { %>
 					<tr>
-						<td><%= orders[i]._id %></td>
-						<td><%= orders[i].dateCreated %></td>
-						<% if(orders[i].isReceive === false){ %>
-						<td class="text-primary">pending</td>
-						<% } else { %>
-						<td class="text-secondary">received</td>
-						<% } %>
-
 						<td>
-							<button class="btn btn-primary" onclick="detail('<%= orders[i]._id %>')">Detail</button>
-							<% if(orders[i].isReceive === false){ %>
-							<button class="btn btn-success" onclick="receivedHandler('<%= orders[i]._id %>')">Received</button>
-							<% } %>
+							<img src="<%= order.products[i].product.pictureUrl %>" alt="" style="height: 100px; width: 100px; object-fit: cover" />
 						</td>
+						<td><%= order.products[i].product.name %></td>
+						<td><%= order.products[i].quantity %></td>
 					</tr>
 					<% } %>
 				</tbody>
 			</table>
+
+			<button class="btn btn-secondary" onclick="window.history.back()">Return</button>
+			<% if(order.isReceive === false){ %>
+			<button class="btn btn-success" onclick="receivedHandler('<%= order._id %>')">Received</button>
+			<% } %>
 		</div>
 		<script>
 			function receivedHandler(id) {
-				fetch(`order/receive/${id}`, {
+				fetch(`/admin/order/receive/${id}`, {
 					method: "GET",
 				})
 					.then(function (response) {
@@ -87,10 +90,6 @@
 					.catch((error) => {
 						log(error);
 					});
-			}
-
-			function detail(id) {
-				window.location.href = `order/detail/${id}`;
 			}
 		</script>
 		<script

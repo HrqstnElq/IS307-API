@@ -21,4 +21,11 @@ router.get("/receive/:orderId", (req, res) => {
 		});
 });
 
+router.get("/detail/:orderId", (req, res) => {
+	Order.findById(req.params.orderId).then((order) => {
+		res.render("order_detail.ejs", {order: order});
+		// res.json(order);
+	});
+});
+
 module.exports = router;
